@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
 const progressRoutes = require('./routes/progress')
+const userRoutes = require('./routes/user')
 
 
 //middleware
@@ -11,6 +12,7 @@ app.use(express.json());
 
 //route 
 app.use('/api/progress',progressRoutes)
+app.use('/api/user',userRoutes )
 
 // Database connection
 mongoose.connect(process.env.URI)
