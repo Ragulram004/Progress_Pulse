@@ -16,13 +16,14 @@ app.use('/api/user',userRoutes )
 
 // Database connection
 mongoose.connect(process.env.URI)
-  .then(()=>{
-    //listen for requests
-    app.listen(process.env.PORT, () => {
-      console.log(`Connected to DB and Server is running on PORT http://localhost:${process.env.PORT}`);
-    })
+
+.then(()=>{
+  //listen for requests
+  app.listen(process.env.PORT, () => {
+    console.log(`Connected to DB and Server is running on PORT http://localhost:${process.env.PORT}`);
   })
-  .catch((error)=>{
-    console.log(error)
-  })
+})
+.catch((error)=>{
+  console.log(error)
+})
 
