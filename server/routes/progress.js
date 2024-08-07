@@ -7,6 +7,10 @@ const {
   deleteProgress,
   updateProgress
 } = require('../controllers/progressController')
+// const requireAuth = require('../middleware/requireAuth')
+
+// reqire Auth
+// router.use(requireAuth)
 
 router.get('/', getProgresses)
 
