@@ -3,7 +3,10 @@ const mongoose = require('mongoose')
 
 //get all progresses
 const getProgresses = async(req,res)=>{
-  const progresses = await Progress.find({}).sort({createdAt:-1})
+
+  const user_id = req.user._id
+
+  const progresses = await Progress.find({user_id}).sort({createdAt:-1})
   res.status(200).json(progresses)
 }
 
@@ -45,7 +48,8 @@ const createProgress = async (req,res)=>{
   }
   //add a document to DB
   try{
-    const progress = await Progress.create({title,hrs,discription})
+    const user_id = req.user._id
+    const progress = await Progress.create({title,hrs,discription,user_id})
     res.status(200).json(progress)
   }catch(error){
     res.status(400).json({error:error.message})

@@ -3,14 +3,20 @@ import { useEffect } from 'react'
 import ProgressDetails from '../components/ProgressDetails'
 import ProgressForm from '../components/ProgressForm'
 import { useProgressesContext } from '../hooks/useProgressesContext'
+import {useAuthContext} from '../hooks/useAuthContext'
 
 function Home() {
 
   const {progresses,dispatch} = useProgressesContext()
+  const {user} = useAuthContext()
 
   useEffect(()=>{
     const fetchProgresses = async ()=> {
-      const response = await fetch('/api/progress')
+      const response = await fetch('/api/progress',{
+        headers :{
+          'Authorization' : `Bearer ${user.token}`
+        }
+      })
       try{
         const json = await response.json()
         
@@ -23,8 +29,10 @@ function Home() {
         console.error('Fetch error:', error);
       }
     }
-    fetchProgresses()
-  },[dispatch])
+    if(user){
+      fetchProgresses()
+    }
+  },[dispatch,user])
   return (
     <div className='home'>
       <ProgressForm/>

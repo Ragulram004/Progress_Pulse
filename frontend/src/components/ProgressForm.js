@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useProgressesContext } from '../hooks/useProgressesContext'
+import { useAuthContext } from "../hooks/useAuthContext"
 
 
 const ProgressForm = ()=>{
@@ -10,9 +11,14 @@ const ProgressForm = ()=>{
   const[discription,setDiscription] = useState('')
   const[error,setError] = useState(null)
   const[emptyFields,setEmptyFields] = useState([])
+  const {user} = useAuthContext()
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
+    if(!user){
+      setError('You must be logged in')
+      return
+    }
 
     const progress = {title,hrs,discription}
 
@@ -20,7 +26,8 @@ const ProgressForm = ()=>{
       method:'POST',
       body:JSON.stringify(progress),
       headers : {
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'Authorization' : `Bearer ${user.token}`
       }
     })
     const json = await response.json()

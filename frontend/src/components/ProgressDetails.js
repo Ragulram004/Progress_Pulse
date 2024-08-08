@@ -1,14 +1,24 @@
 import React from 'react'
 import { useProgressesContext } from '../hooks/useProgressesContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const ProgressDetails = ({progress})=>{
   const {dispatch} = useProgressesContext()
+  const {user} = useAuthContext() 
 
   const handleClick = async ()=>{
+
+    if(!user){
+      return
+    }
+
     const response = await fetch('/api/progress/'+ progress._id,{
-      method : 'DELETE'
+      method : 'DELETE',
+      headers : {
+        'Authorization' : `Bearer ${user.token}`
+      }
     })
     const json = await response.json()
 
