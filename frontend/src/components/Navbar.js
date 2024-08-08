@@ -21,7 +21,7 @@ function Navbar() {
         </Link>
         <nav>
           {user && (
-            <div>
+            <div className='left'>
               <span>{user.email}</span>
               <button onClick={handleClick}>Logout</button>
             </div>

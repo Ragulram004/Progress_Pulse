@@ -34,8 +34,10 @@ function Home() {
     }
   },[dispatch,user])
   return (
-    <div className='home'>
-      <ProgressForm/>
+    <div className='home flex'>
+      <div>
+        <ProgressForm/>
+      </div>
       <div className="progresses">
         {progresses && progresses.map((progress)=>(
           <ProgressDetails key={progress._id} progress={progress}/>
