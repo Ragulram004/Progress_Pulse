@@ -22,7 +22,7 @@ const ProgressForm = ()=>{
 
     const progress = {title,hrs,discription}
 
-    const response = await fetch("/api/progress",{
+    const response = await fetch(`${process.env.REACT_APP_SERVER_API}/api/progress`,{
       method:'POST',
       body:JSON.stringify(progress),
       headers : {

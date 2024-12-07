@@ -12,7 +12,7 @@ function Home() {
 
   useEffect(()=>{
     const fetchProgresses = async ()=> {
-      const response = await fetch('/api/progress',{
+      const response = await fetch(`${process.env.REACT_APP_SERVER_API}/api/progress`,{
         headers :{
           'Authorization' : `Bearer ${user.token}`
         }

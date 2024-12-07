@@ -14,7 +14,7 @@ const ProgressDetails = ({progress})=>{
       return
     }
 
-    const response = await fetch('/api/progress/'+ progress._id,{
+    const response = await fetch(`${process.env.REACT_APP_SERVER_API}/api/progress/`+ progress._id,{
       method : 'DELETE',
       headers : {
         'Authorization' : `Bearer ${user.token}`
