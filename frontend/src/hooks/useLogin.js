@@ -11,7 +11,6 @@ export const useLogin = ()=>{
   const login = async(email,password) =>{
     setError(null)
     setIsLoading(true)
-    console.log('Server API:', process.env.REACT_APP_SERVER_API);
 
     const response = await fetch(`${process.env.REACT_APP_SERVER_API}/api/user/login`,{
       method: 'POST',
