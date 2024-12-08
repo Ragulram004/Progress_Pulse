@@ -7,7 +7,7 @@ const userRoutes = require('./routes/user')
 const cors = require('cors')
 
 app.use(cors({
-  origin:"http://localhost:3000",
+  origin:"https://progress-pulse.vercel.app",
   methods:"GET,POST,PATCH,DELETE",
   credentials:true
 }))
